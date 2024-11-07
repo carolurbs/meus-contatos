@@ -6,6 +6,7 @@ export const Header = styled.header`
   display: flex;
   width: 100%vw;
   justify-content: center;
+  position: sticky;
 `
 
 export const Field = styled.input`

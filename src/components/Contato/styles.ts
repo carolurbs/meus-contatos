@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import colors from '../../styles/colors'
 
 export const Card = styled.div`
   background-color: #fcfcfc;
@@ -43,4 +44,10 @@ export const Buttons = styled.button`
   background-color: #2f3640;
   border-radius: 8px;
   margin-right: 8px;
+`
+export const SaveButton = styled(Buttons)`
+  background-color: ${colors.green};
+`
+export const CancelButton = styled(Buttons)`
+  background-color: ${colors.red};
 `

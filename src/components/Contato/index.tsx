@@ -17,13 +17,15 @@ const Contato = ({ nome, telefone, email }: Props) => {
       <S.Actions>
         {isEditing ? (
           <>
-            <S.Buttons>Salvar</S.Buttons>
-            <S.Buttons onClick={() => setEditing(false)}>Cancelar</S.Buttons>
+            <S.SaveButton>Salvar</S.SaveButton>
+            <S.CancelButton onClick={() => setEditing(false)}>
+              Cancelar
+            </S.CancelButton>
           </>
         ) : (
           <>
             <S.Buttons onClick={() => setEditing(true)}>Editar</S.Buttons>
-            <S.Buttons>Remover</S.Buttons>
+            <S.CancelButton>Remover</S.CancelButton>
           </>
         )}
       </S.Actions>

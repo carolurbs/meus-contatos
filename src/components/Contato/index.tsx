@@ -1,31 +1,92 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import * as S from './styles'
+import { remover, editar } from '../../store/reducers/contatos'
+import Contact from '../../models/Contact'
 
-type Props = {
-  nome: string
-  telefone: string
-  email: string
-}
+type Props = Contact
 
-const Contato = ({ nome, telefone, email }: Props) => {
+const Contato = ({
+  nome: nomeOriginal,
+  telefone: telefoneOriginal,
+  email: emailOriginal,
+  id
+}: Props) => {
+  const dispatch = useDispatch()
   const [isEditing, setEditing] = useState(false)
+  const [nome, setName] = useState('')
+  const [telefone, setTel] = useState('')
+  const [email, setMail] = useState('')
+
+  useEffect(() => {
+    if (nomeOriginal.length > 0) {
+      setName(nomeOriginal)
+    }
+    if (telefoneOriginal.length > 0) {
+      setTel(telefoneOriginal)
+    }
+    if (emailOriginal.length > 0) {
+      setMail(emailOriginal)
+    }
+  }, [nomeOriginal, telefoneOriginal, emailOriginal]),
+    [nomeOriginal, telefoneOriginal, emailOriginal]
+
+  function cancelEdit() {
+    setEditing(false)
+    setName(nomeOriginal)
+    setTel(telefoneOriginal)
+    setMail(emailOriginal)
+  }
+
   return (
     <S.Card>
-      <S.Name type="text" placeholder="Nome do Contato" value={nome} />
-      <S.Info type="tel" placeholder="Telefone do Contato" value={telefone} />
-      <S.Info type="email" placeholder="Email do Contato" value={email} />
+      <S.Name
+        type="text"
+        placeholder="Nome do Contato"
+        disabled={!isEditing}
+        value={nome}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <S.Info
+        type="tel"
+        placeholder="Telefone do Contato"
+        disabled={!isEditing}
+        value={telefone}
+        onChange={(e) => setTel(e.target.value)}
+      />
+      <S.Info
+        type="email"
+        placeholder="Email do Contato"
+        disabled={!isEditing}
+        value={email}
+        onChange={(e) => setMail(e.target.value)}
+      />
       <S.Actions>
         {isEditing ? (
           <>
-            <S.SaveButton>Salvar</S.SaveButton>
-            <S.CancelButton onClick={() => setEditing(false)}>
-              Cancelar
-            </S.CancelButton>
+            <S.SaveButton
+              onClick={() => {
+                dispatch(
+                  editar({
+                    nome,
+                    telefone,
+                    email,
+                    id
+                  })
+                )
+                setEditing(false)
+              }}
+            >
+              Salvar
+            </S.SaveButton>
+            <S.CancelButton onClick={cancelEdit}>Cancelar</S.CancelButton>
           </>
         ) : (
           <>
             <S.Buttons onClick={() => setEditing(true)}>Editar</S.Buttons>
-            <S.CancelButton>Remover</S.CancelButton>
+            <S.CancelButton onClick={() => dispatch(remover(id))}>
+              Remover
+            </S.CancelButton>
           </>
         )}
       </S.Actions>

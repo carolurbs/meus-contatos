@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import EstiloGlobal, { Container } from './styles'
 import store from './store'
 import Home from './pages/home'
+import Register from './pages/registry'
 
 const routes = createBrowserRouter([
   {
@@ -11,7 +12,7 @@ const routes = createBrowserRouter([
   },
   {
     path: '/novo',
-    element: <h1>Novo Contato</h1>
+    element: <Register />
   }
 ])
 function App() {

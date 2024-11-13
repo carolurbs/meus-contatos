@@ -15,4 +15,7 @@ export const Container = styled.div`
   flex-direction: column;
   text-align: center;
 `
+export const MainContainer = styled.main`
+  padding: 0 40px;
+`
 export default EstiloGlobal

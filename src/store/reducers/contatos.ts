@@ -44,5 +44,5 @@ const contatosSlice = createSlice({
     }
   }
 })
-export const { remover, editar } = contatosSlice.actions
+export const { remover, editar, cadastrar } = contatosSlice.actions
 export default contatosSlice.reducer

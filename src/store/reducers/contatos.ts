@@ -31,7 +31,7 @@ const contatosSlice = createSlice({
         state.itens[contactIndex] = action.payload
       }
     },
-    cadastrar: (state, action: PayloadAction<Contact>) => {
+    cadastrar: (state, action: PayloadAction<Omit<Contact, 'id'>>) => {
       const alreadyExist = state.itens.find(
         (contato) =>
           contato.nome.toLowerCase() === action.payload.nome.toLowerCase()
@@ -39,7 +39,12 @@ const contatosSlice = createSlice({
       if (alreadyExist) {
         alert('Já existe um contato com esse nome')
       } else {
-        state.itens.push(action.payload)
+        const lastContact = state.itens[state.itens.length - 1]
+        const newContact = {
+          ...action.payload,
+          id: lastContact ? lastContact.id + 1 : 1
+        }
+        state.itens.push(newContact)
       }
     }
   }

@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import colors from '../../styles/colors'
+import { Buttons } from '../../styles'
 
 export const Card = styled.div`
   background-color: #fcfcfc;
@@ -35,17 +36,7 @@ export const Actions = styled.div`
   border-top: 1px solid rgba (0, 0, 0.1);
   padding-top: 16px;
 `
-export const Buttons = styled.button`
-  font-weight: bold;
-  font-size: 12px;
-  color: #fff;
-  padding: 8px 12px;
-  border: none;
-  cursor: pointer;
-  background-color: #2f3640;
-  border-radius: 8px;
-  margin-right: 8px;
-`
+
 export const CancelButton = styled(Buttons)`
   background-color: ${colors.red};
 `

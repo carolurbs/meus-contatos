@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import * as S from './styles'
-import { SaveButton } from '../../styles'
+import { Buttons, SaveButton } from '../../styles'
 import { remover, editar } from '../../store/reducers/contatos'
 import Contact from '../../models/Contact'
 
@@ -84,7 +84,7 @@ const Contato = ({
           </>
         ) : (
           <>
-            <S.Buttons onClick={() => setEditing(true)}>Editar</S.Buttons>
+            <Buttons onClick={() => setEditing(true)}>Editar</Buttons>
             <S.CancelButton onClick={() => dispatch(remover(id))}>
               Remover
             </S.CancelButton>
